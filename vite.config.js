@@ -5,7 +5,12 @@ export default defineConfig({
 		port: 3030,
 	},
 	build: {
-		outDir: 'dist',
-		minify: 'esbuild',
+		// outDir: 'dist',
+		// minify: 'esbuild',
+		rollupOptions: {
+			input: {
+				main: 'index.html'
+			}
+		}
 	}
 })

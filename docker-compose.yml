@@ -7,9 +7,9 @@ services:
       - "traefik.http.services.onstreamwidgets.loadbalancer.server.port=3030"
       - "traefik.http.routers.onstreamwidgets.entrypoints=websecure"
       - "traefik.http.routers.onstreamwidgets.tls.certresolver=myresolver"
-    deploy:
-      mode: replicated
-      replicas: 3
+    # deploy:
+    #   mode: replicated
+    #   replicas: 3
     networks:
       - webnet
 
