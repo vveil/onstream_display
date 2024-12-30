@@ -1,0 +1,33 @@
+services:
+  onstreamwidgets:
+    image: ghcr.io/vveil/onstreamwidgets.frontend:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.onstreamwidgets.rule=Host(`widgets.niklas.ai`)"
+      - "traefik.http.services.onstreamwidgets.loadbalancer.server.port=3000"
+      - "traefik.http.routers.onstreamwidgets.entrypoints=websecure"
+      - "traefik.http.routers.onstreamwidgets.tls.certresolver=myresolver"
+    deploy:
+      mode: replicated
+      replicas: 3
+    networks:
+      - webnet
+
+  # node-backend:
+  #   image: ghcr.io/vveil/onstreamwidgets.backend:latest
+  #   env_file:
+  #     - ./backend/.env
+  #   volumes:
+  #     - ./backend/uploads:/usr/src/app/uploads
+
+networks:
+  webnet:
+    external: true
+
+
+# build: 
+#   context: .
+#   dockerfile: Dockerfile
+# ports:
+#   - "8080:80"
+# restart: unless-stopped
